@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays og Lister Eksta oppgave</title>
+</head>
+
+<body>
+
+    <div id="app"></div>
+
+    <script>
+        // model
+
+        let tallene = []
+
+        // view
+
+        function updateView() {
+            document.getElementById('app').innerHTML = /*HTML*/`
+            <div>Usorterte tall: ${visTalleneIDiven(tallene)}</div>
+            <div>Sorterte tall: ${visTalleneIDiven(sorterTallene())} </div>
+            `;
+        }
+
+        // controller
+
+        function loopTiGanger() {
+            for (let index = 0; index < 10; index++) {
+                let randomTall;
+                do {
+                    randomTall = Math.floor(Math.random() * 10) + 1;
+                } while (tallene.length > 0 && randomTall === tallene[tallene.length - 1]);
+                tallene.push(randomTall);
+            }
+        }
+
+        function visTalleneIDiven(sorterteTall) {
+            let herErEnString = "";
+            for (let i = 0; i < sorterteTall.length; i++) {
+                herErEnString += sorterteTall[i] + ", ";
+            }
+            return herErEnString;
+        }
+
+        function sorterTallene() {
+            return [...tallene].sort((a, b) => a - b);
+
+        }
+
+        loopTiGanger();
+        updateView();
+
+    </script>
+
+    <!-- 
+lag et tomt array
+lag en loop som kjører 10 ganger
+lag et random tall mellom 1 og 10
+legg tallet til i arrayet
+vis frem tallene i arrayet i en div
+
+Lag en ny div
+Sorter tallene i arrayet i stigende rekkefølge
+Vis frem det nye sorterte arrayet i den nye diven (så du har usortert over og sortert under)
+                    Pass på at du ikke får det samme tallet to ganger på rad (Big brain shit)
+     -->
+</body>
+
+</html>
